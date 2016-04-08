@@ -7,7 +7,7 @@ OBJS = parser.o  \
        corefn.o  \
 	   native.o  \
 
-LLVMCONFIG = llvm-config
+LLVMCONFIG = llvm-config-3.7
 CPPFLAGS = `$(LLVMCONFIG) --cppflags` -std=c++11
 LDFLAGS = `$(LLVMCONFIG) --ldflags` -lpthread -ldl -lz -lncurses -rdynamic
 LIBS = `$(LLVMCONFIG) --libs`
