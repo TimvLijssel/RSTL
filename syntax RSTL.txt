@@ -21,12 +21,17 @@ als ((waar of onwaar) en waar) {
 
 }
 
-terwijl(bool){
+terwijl(bool) {
     uitvoer("hahasdfljal\n")
 }
 
-voor(nat i = 0; i<b; i++){
+voor(nat i = 0; i<b; i++) {
     uitvoer("Het getal is:"); uitvoer(i)
 }
 
 lengte(string)
+
+functie funtienaam(geh getal1, boo dezeishopelijk waar) {
+    uitvoer("Hier komt de logische inhoud van deze super gave functieTM") 
+    teruggave 0 %- Hier kan alles worden teruggestuurd
+}
