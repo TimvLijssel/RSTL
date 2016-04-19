@@ -7,9 +7,24 @@ using namespace std;
 extern int yyparse();
 extern NBlock* programBlock;
 
+void createEchoFunction(CodeGenContext& context) {
+	
+     // Printf Function
+     std::vector<llvm::Type*> printf_arg_types;
+     printf_arg_types.push_back(llvm::Type::getInt8PtrTy(getGlobalContext())); //char*
+ 
+     llvm::FunctionType* printf_type =
+         llvm::FunctionType::get(
+             llvm::Type::getInt32Ty(getGlobalContext()), printf_arg_types, true);
+ 
+     llvm::Function *func1 = llvm::Function::Create(
+                 printf_type, llvm::Function::ExternalLinkage,
+                 llvm::Twine("printf"),
+                 context.module
+            );
+     func1->setCallingConv(llvm::CallingConv::C);
 
-void createEchoFunction(CodeGenContext& context, llvm::Function* printfFn)
-{
+    // Echo function
     std::vector<llvm::Type*> echo_arg_types;
     echo_arg_types.push_back(llvm::Type::getInt64Ty(getGlobalContext()));
 
@@ -19,7 +34,7 @@ void createEchoFunction(CodeGenContext& context, llvm::Function* printfFn)
 
     llvm::Function *func = llvm::Function::Create(
                 echo_type, llvm::Function::InternalLinkage,
-                llvm::Twine("echo"),
+                llvm::Twine("uitvoer"),
                 context.module
            );
     llvm::BasicBlock *bblock = llvm::BasicBlock::Create(getGlobalContext(), "entry", func, 0);
@@ -49,12 +64,11 @@ void createEchoFunction(CodeGenContext& context, llvm::Function* printfFn)
     toPrint->setName("toPrint");
     args.push_back(toPrint);
     
-	CallInst *call = CallInst::Create(printfFn, makeArrayRef(args), "", bblock);
+	CallInst *call = CallInst::Create(func1, makeArrayRef(args), "", bblock);
 	ReturnInst::Create(getGlobalContext(), bblock);
 	context.popBlock();
 }
 
 void createCoreFunctions(CodeGenContext& context){
-	llvm::Function* printfFn = createPrintfFunction(context);
-    createEchoFunction(context, printfFn);
+    createEchoFunction(context);
 }
