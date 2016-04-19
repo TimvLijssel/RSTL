@@ -47,7 +47,7 @@ static Type *typeOf(const NIdentifier& type)
 	if (type.name.compare("geh") == 0) {
 		return Type::getInt64Ty(getGlobalContext());
 	}
-	else if (type.name.compare("double") == 0) {
+	else if (type.name.compare("rat") == 0) {
 		return Type::getDoubleTy(getGlobalContext());
 	}
 	return Type::getVoidTy(getGlobalContext());
