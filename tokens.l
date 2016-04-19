@@ -38,6 +38,6 @@
 "*"		          				return TOKEN(TMUL);
 "/"				          		return TOKEN(TDIV);
 
-.                       printf("We kennen " + yytext + " niet!\n"); yyterminate();
+.                       printf("We kennen %s niet!\n", yytext); yyterminate();
 
 %%
