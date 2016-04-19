@@ -3,10 +3,8 @@
 regel
 nog een regel; en nog een regel %- commentaar
 
-nat n = 234
 geh m = -23
-kor x = 10,2; kor z = 123,2
-lan y = 123,12371240312083
+rat y = 123,12371240312083
 kar karakter = 'a'
 tkr tekst = "Hallo wereld"
 boo boolean = onwaar
