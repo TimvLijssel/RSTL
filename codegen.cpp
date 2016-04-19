@@ -44,7 +44,7 @@ GenericValue CodeGenContext::runCode() {
 /* Returns an LLVM type based on the identifier */
 static Type *typeOf(const NIdentifier& type) 
 {
-	if (type.name.compare("int") == 0) {
+	if (type.name.compare("geh") == 0) {
 		return Type::getInt64Ty(getGlobalContext());
 	}
 	else if (type.name.compare("double") == 0) {
