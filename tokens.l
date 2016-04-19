@@ -30,14 +30,14 @@
 "{"         						return TOKEN(TLBRACE);
 "}"					          	return TOKEN(TRBRACE);
 
-"."         						return TOKEN(TDOT);
-","				          		return TOKEN(TCOMMA);
+"."         						return TOKEN(TCOMMA);
+","				          		return TOKEN(TDOT);
 
 "+"				          		return TOKEN(TPLUS);
 "-"		          				return TOKEN(TMINUS);
 "*"		          				return TOKEN(TMUL);
 "/"				          		return TOKEN(TDIV);
 
-.                       printf("Unknown token!\n"); yyterminate();
+.                       printf("We kennen " + yytext + " niet!\n"); yyterminate();
 
 %%
