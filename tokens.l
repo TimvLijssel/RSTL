@@ -30,6 +30,8 @@
 "{"         						return TOKEN(TLBRACE);
 "}"					          	return TOKEN(TRBRACE);
 
+"""         				    return TOKEN(TQUOTE)
+
 "."         						return TOKEN(TCOMMA);
 ","				          		return TOKEN(TDOT);
 
