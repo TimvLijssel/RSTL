@@ -1,5 +1,5 @@
-int do_math(int a) {
-  int x = a * 5
+geh do_math(geh a) {
+  geh x = a * 5
   return x + 3
 }
 
