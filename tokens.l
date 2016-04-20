@@ -15,6 +15,9 @@
 "teruggave"				        return TOKEN(TRETURN);
 "onwaar"               SAVE_TOKEN; return TBOOLONWAAR;
 "waar"                  SAVE_TOKEN; return TBOOLWAAR;
+"en"				          		return TOKEN(TAND);
+"of"				          		return TOKEN(TOR);
+"exof"				          		return TOKEN(TXOR);
 [a-zA-Z_][a-zA-Z0-9_]*  SAVE_TOKEN; return TIDENTIFIER;
 [0-9]+\,[0-9]* 			    SAVE_TOKEN; return TDOUBLE;
 [0-9]+					        SAVE_TOKEN; return TINTEGER;
