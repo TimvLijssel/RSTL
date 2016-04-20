@@ -5,3 +5,6 @@ geh doe_wiskunde(geh a) {
 
 uitvoer(doe_wiskunde(11))
 uitvoer(doe_wiskunde(12))
+
+boo tester = true
+uitvoer(tester)
