@@ -30,7 +30,8 @@
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE
 %token <token> TPLUS TMINUS TMUL TDIV
-%token <token> TRETURN
+%token <token> TRETURN3
+%token <token> TAND TOR TXOR
 
 /* Define the type of node our nonterminal symbols represent.
    The types refer to the %union declaration above. Ex: when
@@ -111,6 +112,6 @@ call_args : /*blank*/  { $$ = new ExpressionList(); }
 		  | call_args TCOMMA expr  { $1->push_back($3); }
 		  ;
 
-comparison : TCEQ | TCNE | TCLT | TCLE | TCGT | TCGE;
+comparison : TCEQ | TCNE | TCLT | TCLE | TCGT | TCGE | TAND | TOR | TXOR;
 
 %%
