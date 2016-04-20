@@ -13,4 +13,4 @@ printf "Klaar!\n\n\n"
 
 printf "Starten van example.txt in RSTL...\n"
 cat example.txt | ./parser
-printf "Klaar!\nProgramma eindigt\n"
+printf "\nKlaar!\nProgramma eindigt\n"
