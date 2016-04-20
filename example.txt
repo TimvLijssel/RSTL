@@ -12,5 +12,9 @@ uitvoer(boolean)
 boo boolean2 = onwaar
 uitvoer(boolean2)
 
-uitvoer(boolean && boolean2)
+uitvoer(boolean en boolean2)
+
+uitvoer(boolean en boolean2)
+uitvoer(boolean en boolean2)
+uitvoer(boolean en boolean2)uitvoer(boolean en boolean2)
 
