@@ -14,7 +14,18 @@ uitvoer(boolean2)
 
 uitvoer(boolean en boolean2)
 
-uitvoer(boolean en boolean2)
-uitvoer(boolean en boolean2)
-uitvoer(boolean en boolean2)uitvoer(boolean en boolean2)
+uitvoer(waar en waar)
+uitvoer(onwaar en waar)
+uitvoer(waar en onwaar)
+uitvoer(onwaar en onwaar)
+
+uitvoer(waar of waar)
+uitvoer(onwaar of waar)
+uitvoer(waar of onwaar)
+uitvoer(onwaar of onwaar)
+
+uitvoer(waar exof waar)
+uitvoer(onwaar exof waar)
+uitvoer(waar exof onwaar)
+uitvoer(onwaar exof onwaar)
 
