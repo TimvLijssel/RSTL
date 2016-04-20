@@ -50,6 +50,9 @@ static Type *typeOf(const NIdentifier& type)
 	else if (type.name.compare("rat") == 0) {
 		return Type::getDoubleTy(getGlobalContext());
 	}
+	else if (type.name.compare("boo") == 0) {
+		return Type::getInt1Ty(getGlobalContext());
+	}
 	return Type::getVoidTy(getGlobalContext());
 }
 
@@ -65,6 +68,12 @@ Value* NDouble::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating double: " << value << endl;
 	return ConstantFP::get(Type::getDoubleTy(getGlobalContext()), value);
+}
+
+Value* NBoolean::codeGen(CodeGenContext& context)
+{
+	std::cout << "Creating boolean: " << value << endl;
+	return ConstantFP::get(Type::getInt1Ty(getGlobalContext()), value); // Ik denk dat het Int1 moet zijn voor een 0 of 1
 }
 
 Value* NIdentifier::codeGen(CodeGenContext& context)
