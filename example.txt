@@ -1,7 +1,7 @@
-geh do_math(geh a) {
+geh doe_wiskunde(geh a) {
   geh x = a * 5
-  return x + 3
+  teruggave x + 3
 }
 
-uitvoer(do_math(11))
-uitvoer(do_math(12))
+uitvoer(doe_wiskunde(11))
+uitvoer(doe_wiskunde(12))
