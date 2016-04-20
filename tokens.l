@@ -13,11 +13,11 @@
 
 [ \t\n]					        ;
 "teruggave"				        return TOKEN(TRETURN);
+"onwaar"               SAVE_TOKEN; return TBOOLONWAAR;
+"waar"                  SAVE_TOKEN; return TBOOLWAAR;
 [a-zA-Z_][a-zA-Z0-9_]*  SAVE_TOKEN; return TIDENTIFIER;
 [0-9]+\,[0-9]* 			    SAVE_TOKEN; return TDOUBLE;
 [0-9]+					        SAVE_TOKEN; return TINTEGER;
-"onwaar"               SAVE_TOKEN; return TBOOLONWAAR;
-"waar"                  SAVE_TOKEN; return TBOOLWAAR;
 
 "="						          return TOKEN(TEQUAL);
 "=="				          	return TOKEN(TCEQ);
