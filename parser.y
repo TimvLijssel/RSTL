@@ -30,7 +30,7 @@
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE
 %token <token> TPLUS TMINUS TMUL TDIV
-%token <token> TRETURN3
+%token <token> TRETURN
 %token <token> TAND TOR TXOR
 
 /* Define the type of node our nonterminal symbols represent.
