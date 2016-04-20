@@ -41,7 +41,7 @@ public:
 class NBoolean : public NExpression {
 public:
 	int value;
-	NBoolean(string value) : value(value) { }
+	NBoolean(int value) : value(value) { }
 	virtual llvm::Value* codeGen(CodeGenContext& context);
 };
 
