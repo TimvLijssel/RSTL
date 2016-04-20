@@ -113,6 +113,9 @@ Value* NBinaryOperator::codeGen(CodeGenContext& context)
 		case TDIV: 		instr = Instruction::SDiv; goto math;
 				
 		/* TODO comparison */
+		case TAND: 	instr = Instruction::And; goto math;
+		case TOR: 		instr = Instruction::Or; goto math;
+		case TXOR: 		instr = Instruction::Xor; goto math;
 	}
 
 	return NULL;
