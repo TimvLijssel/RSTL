@@ -1,31 +1,16 @@
-geh doe_wiskunde(geh a) {
+geh doe_wiskunde(geh a) {    %- Definieer een fucntie
   geh x = a * 5
   teruggave x + 3
 }
 
-uitvoer(doe_wiskunde(11))
+uitvoer(doe_wiskunde(11))    %- Voer een getal uit
 uitvoer(doe_wiskunde(12))
 
-boo boolean = waar
+boo boolean = waar           %- Definieer een boolean
 uitvoer(boolean)
 
 boo boolean2 = onwaar
 uitvoer(boolean2)
 
-uitvoer(boolean en boolean2)
-
-uitvoer(waar en waar)
-uitvoer(onwaar en waar)
-uitvoer(waar en onwaar)
-uitvoer(onwaar en onwaar)
-
-uitvoer(waar of waar)
+uitvoer(boolean en boolean2) %- Voer een logische operatie uit
 uitvoer(onwaar of waar)
-uitvoer(waar of onwaar)
-uitvoer(onwaar of onwaar)
-
-uitvoer(waar exof waar)
-uitvoer(onwaar exof waar)
-uitvoer(waar exof onwaar)
-uitvoer(onwaar exof onwaar)
-
