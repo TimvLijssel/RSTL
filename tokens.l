@@ -45,6 +45,8 @@
 "*"		          				return TOKEN(TMUL);
 "/"				          		return TOKEN(TDIV);
 
+"%-".*                  /* Commentaar */
+
 .                       printf("We kennen %s niet!\n", yytext); yyterminate();
 
 %%
