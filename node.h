@@ -3,6 +3,8 @@
 #include <llvm/IR/Value.h>
 #include <string>
 
+using namespace std;
+
 class CodeGenContext;
 class NStatement;
 class NExpression;
@@ -50,7 +52,7 @@ public:
 	string value;
 	NString(string value) : value(value) { }
 	virtual llvm::Value* codeGen(CodeGenContext& context);
-}
+};
 
 class NIdentifier : public NExpression {
 public:
