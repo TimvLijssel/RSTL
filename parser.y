@@ -39,7 +39,7 @@
    calling an (NIdentifier*). It makes the compiler happy.
  */
 %type <ident> ident
-%type <expr> numeric expr boolean
+%type <expr> numeric expr boolean string
 %type <varvec> func_decl_args
 %type <exprvec> call_args
 %type <block> program stmts block
