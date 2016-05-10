@@ -136,3 +136,13 @@ public:
 		type(type), id(id), arguments(arguments), block(block) { }
 	virtual llvm::Value* codeGen(CodeGenContext& context);
 };
+
+class NIfStatement : public NStatement {
+public:
+	const NBoolean *condition
+	NBlock& block
+	NIfStatment(const NBoolean *condition, NBlock& block) :
+		condition(condition), block(block) { }
+	virtual llvm::Value* codeGen(CodeGenContext& context);
+}:
+}
