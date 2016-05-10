@@ -90,8 +90,8 @@ numeric : TINTEGER { $$ = new NInteger(atol($1->c_str())); delete $1; }
 		| TDOUBLE { $$ = new NDouble(atof($1->c_str())); delete $1; }
 		;
 
-boolean : TBOOLWAAR { $$ = new NBoolean(true); delete $1; }
-		| TBOOLONWAAR { $$ = new NBoolean(false); delete $1; }
+boolean : TBOOLWAAR { $$ = new NBoolean(true); }
+		| TBOOLONWAAR { $$ = new NBoolean(false); }
 		;
 
 string : TSTRING { $$ = new NString($1); delete $1; }
