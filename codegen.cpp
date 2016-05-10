@@ -53,6 +53,13 @@ static Type *typeOf(const NIdentifier& type)
 	else if (type.name.compare("boo") == 0) {
 		return Type::getInt1Ty(getGlobalContext());
 	}
+	else if (type.name.compare("tkr") == 0) {
+		std::cout << "String gevonden!" << endl;
+		Type* I = IntegerType::getInt32Ty(getGlobalContext());
+		std::cout << "De lengte wordt: " << I.getBitWidth() << " en natuurlijk  " << I.getBitWidth()/32 <<endl;
+		ArrayType* arrayType = ArrayType::get(I, I.getBitWidth()/32);
+		return arrayType;
+	}
 	return Type::getVoidTy(getGlobalContext());
 }
 
@@ -62,6 +69,13 @@ Value* NInteger::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating integer: " << value << endl;
 	return ConstantInt::get(Type::getInt64Ty(getGlobalContext()), value, true);
+}
+
+Value* NString::codeGen(CodeGenContext& context)
+{
+	std::cout << "Creating string :O : " << value << endl;
+	llvm::Value* v = llvm::ConstantArray::get(getGlobalContext(), value.c_str());
+	return v;
 }
 
 Value* NDouble::codeGen(CodeGenContext& context)
