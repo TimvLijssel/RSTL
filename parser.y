@@ -61,7 +61,7 @@ stmts : stmt { $$ = new NBlock(); $$->statements.push_back($<stmt>1); }
 	  | stmts stmt { $1->statements.push_back($<stmt>2); }
 	  ;
 
-stmt : var_decl | func_decl
+stmt : var_decl | func_decl | if_stmt
 	 | expr { $$ = new NExpressionStatement(*$1); }
 	 | TRETURN expr { $$ = new NReturnStatement(*$2); }
      ;
