@@ -13,8 +13,9 @@
 
 [ \t\n]					        ;
 "teruggave"				        return TOKEN(TRETURN);
-"onwaar"               SAVE_TOKEN; return TBOOLONWAAR;
-"waar"                  SAVE_TOKEN; return TBOOLWAAR;
+"als"                   return TOKEN(TIF);
+"onwaar"                return TOKEN(TBOOLONWAAR);
+"waar"                  return TOKEN(TBOOLWAAR);
 "en"				          		return TOKEN(TAND);
 "of"				          		return TOKEN(TOR);
 "exof"				          		return TOKEN(TXOR);
