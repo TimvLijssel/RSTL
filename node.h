@@ -139,10 +139,9 @@ public:
 
 class NIfStatement : public NStatement {
 public:
-	const NBoolean *condition
+	const NExpression *condition
 	NBlock& block
 	NIfStatment(const NBoolean *condition, NBlock& block) :
 		condition(condition), block(block) { }
 	virtual llvm::Value* codeGen(CodeGenContext& context);
-}:
-}
+};
