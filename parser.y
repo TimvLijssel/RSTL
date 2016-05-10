@@ -30,7 +30,7 @@
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE
 %token <token> TPLUS TMINUS TMUL TDIV
-%token <token> TRETURN
+%token <token> TRETURN TIF
 %token <token> TAND TOR TXOR
 
 /* Define the type of node our nonterminal symbols represent.
@@ -43,7 +43,7 @@
 %type <varvec> func_decl_args
 %type <exprvec> call_args
 %type <block> program stmts block
-%type <stmt> stmt var_decl func_decl
+%type <stmt> stmt var_decl func_decl if_stmt
 %type <token> comparison
 
 /* Operator precedence for mathematical operators */
@@ -82,6 +82,9 @@ func_decl_args : /*blank*/  { $$ = new VariableList(); }
 		  | var_decl { $$ = new VariableList(); $$->push_back($<var_decl>1); }
 		  | func_decl_args TCOMMA var_decl { $1->push_back($<var_decl>3); }
 		  ;
+
+if_stmt : TIF TLPAREN expr TRPAREN block { $$ = new NIfStatement($3,*$5); }
+	;
 
 ident : TIDENTIFIER { $$ = new NIdentifier(*$1); delete $1; }
 	  ;
