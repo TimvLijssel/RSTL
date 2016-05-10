@@ -217,3 +217,12 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 	std::cout << "Creating function: " << id.name << endl;
 	return function;
 }
+
+Value* NIfStatement::codeGen(CodeGenContext& context)
+{
+	std::cout << "Creating if-statement" << endl;
+	if (condition.value) {
+		
+	}
+}
+
