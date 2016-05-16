@@ -49,8 +49,8 @@ public:
 
 class NString : public NExpression {
 public:
-	std::string name;
-	NString(const std::string& name) : name(name) { }
+	std::string value;
+	NString(const std::string& value) : value(value) { }
 	virtual llvm::Value* codeGen(CodeGenContext& context);
 };
 
