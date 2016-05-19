@@ -49,8 +49,8 @@ public:
 
 class NBoolean : public NExpression {
 public:
-	bool _value;
-	NBoolean(bool value) : _value(value) {}
+	bool value;
+	NBoolean(bool value) : value(value) {}
 	virtual llvm::Value* codeGen(CodeGenContext& context);
 };
 
