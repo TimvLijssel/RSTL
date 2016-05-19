@@ -18,7 +18,7 @@
 	NVariableDeclaration *var_decl;
 	std::vector<NVariableDeclaration*> *varvec;
 	std::vector<NExpression*> *exprvec;
-	std::string *string;
+	/*std::string *string;*/
 	int token;
 }
 
@@ -26,7 +26,7 @@
    match our tokens.l lex file. We also define the node type
    they represent.
  */
-%token <string> TIDENTIFIER TINTEGER TDOUBLE TBOOLWAAR TBOOLONWAAR TSTRING
+%token <string> TIDENTIFIER TINTEGER TDOUBLE TBOOLWAAR TBOOLONWAAR /*TSTRING*/
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE
 %token <token> TPLUS TMINUS TMUL TDIV
@@ -39,7 +39,7 @@
    calling an (NIdentifier*). It makes the compiler happy.
  */
 %type <ident> ident
-%type <expr> numeric expr boolean string
+%type <expr> numeric expr boolean /*string*/
 %type <varvec> func_decl_args
 %type <exprvec> call_args
 %type <block> program stmts block
@@ -97,8 +97,8 @@ boolean : TBOOLWAAR { $$ = new NBoolean(true); }
 		| TBOOLONWAAR { $$ = new NBoolean(false); }
 		;
 
-string : TSTRING { $$ = new NString($1); delete $1; }
-		;
+/*string : TSTRING { $$ = new NString($1); delete $1; }
+		;*/
 	
 expr : ident TEQUAL expr { $$ = new NAssignment(*$<ident>1, *$3); }
 	 | ident TLPAREN call_args TRPAREN { $$ = new NMethodCall(*$1, *$3); delete $3; }
