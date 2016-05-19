@@ -243,8 +243,9 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	// Create block for the then block.
 	BasicBlock *ThenBB = BasicBlock::Create(getGlobalContext(), "then", TheFunction);
 	BasicBlock *MergeBB = BasicBlock::Create(getGlobalContext(), "ifcont");
+	BasicBlock *EmptyBB = BasicBlock::Create(getGlobalContext());
 	
-	Builder.CreateCondBr(CondV, ThenBB);
+	Builder.CreateCondBr(CondV, ThenBB, EmptyBB);
 	
 	// Emit then value.
 	Builder.SetInsertPoint(ThenBB);
