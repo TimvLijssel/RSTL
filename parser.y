@@ -18,7 +18,7 @@
 	NVariableDeclaration *var_decl;
 	std::vector<NVariableDeclaration*> *varvec;
 	std::vector<NExpression*> *exprvec;
-	/*std::string *string;*/
+	std::string *string;
 	int token;
 }
 
