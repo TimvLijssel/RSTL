@@ -227,20 +227,20 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	
 	// Convert condition to a bool by comparing equal to 0.0.
 	CondV = Builder.CreateFCmpONE(
-		CondV, ConstantFP::get(LLVMContext,APFloat(0.0)), "ifcond");
+		CondV, ConstantFP::get(getGlobalContext(),APFloat(0.0)), "ifcond");
 	
 	Function *TheFunction = Builder.GetInsertBlock()->getParent();
 	
 	// Create block for the then block.
-	BasicBlock *ThenBB = BasicBlock::Create(LLVMContext, "then", TheFunction);
-	BasicBlock *MergeBB = BasicBlock::Create(LLVMContext, "ifcont");
+	BasicBlock *ThenBB = BasicBlock::Create(getGlobalContext(), "then", TheFunction);
+	BasicBlock *MergeBB = BasicBlock::Create(getGlobalContext(), "ifcont");
 	
-	Builder.CreateCondBr(CondV, IfBB);
+	Builder.CreateCondBr(CondV, ThenBB);
 	
 	// Emit then value.
 	Builder.SetInsertPoint(ThenBB);
 	
-	Value *ThenV = Then->codegen();
+	Value *ThenV = then->codegen();
 	if (!ThenV)
 		return nullptr;
 		
@@ -251,7 +251,7 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	// Emit merge block.
 	TheFunction->getBasicBlockList().push_back(MergeBB);
 	Builder.SetInsertPoint(MergeBB);
-	PHINode *PN = Builder.CreatePHI(Type::geDoubleTy(LLVMContext), 2, "iftmp");
+	PHINode *PN = Builder.CreatePHI(Type::getDoubleTy(getGlobalContext()), 2, "iftmp");
 	
 	PN->addIncoming(ThenV, ThenBB);
 	return PN;
