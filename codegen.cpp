@@ -221,8 +221,39 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating if-statement" << endl;
-	if (condition.value) {
+	Value *CondV = condition->codegen();
+	if (!CondV)
+		return nullptr;
+	
+	// Convert condition to a bool by comparing equal to 0.0.
+	CondV = Builder.CreateFCmpONE(
+		CondV, ConstantFP::get(LLVMContext,APFloat(0.0)), "ifcond");
+	
+	Function *TheFunction = Builder.GetInsertBlock()->getParent();
+	
+	// Create block for the then block.
+	BasicBlock *ThenBB = BasicBlock::Create(LLVMContext, "then", TheFunction);
+	BasicBlock *MergeBB = BasicBlock::Create(LLVMContext, "ifcont");
+	
+	Builder.CreateCondBr(CondV, IfBB);
+	
+	// Emit then value.
+	Builder.SetInsertPoint(ThenBB);
+	
+	Value *ThenV = Then->codegen();
+	if (!ThenV)
+		return nullptr;
 		
-	}
+	Builder.CreateBr(MergeBB);
+	// Codegen of 'Then' can change the current block, update ThenBB for the PHI.
+	ThenBB = Builder.GetInsertBlock();
+	
+	// Emit merge block.
+	TheFunction->getBasicBlockList().push_back(MergeBB);
+	Builder.SetInsertPoint(MergeBB);
+	PHINode *PN = Builder.CreatePHI(Type::geDoubleTy(LLVMContext), 2, "iftmp");
+	
+	PN->addIncoming(ThenV, ThenBB);
+	return PN;
 }
 
