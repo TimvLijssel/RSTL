@@ -226,7 +226,7 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating if-statement" << endl;
-	Value *CondV = condition->codeGen(getGlobalContext());
+	Value *CondV = condition.codeGen(context);
 	if (!CondV)
 		return nullptr;
 	
