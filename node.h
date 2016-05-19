@@ -146,7 +146,7 @@ public:
 
 class NIfStatement : public NStatement {
 public:
-	const NExpression *condition;
+	const NExpressionStatement *condition;
 	NBlock& then;
 	NIfStatement(const NExpression *condition, NBlock& then) :
 		condition(condition), then(then) { }
