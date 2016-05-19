@@ -245,7 +245,7 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	// Emit then value.
 	Builder.SetInsertPoint(ThenBB);
 	
-	const Value *ThenV = then.codeGen();
+	const Value *ThenV = then.codeGen(context);
 	if (!ThenV)
 		return nullptr;
 		
