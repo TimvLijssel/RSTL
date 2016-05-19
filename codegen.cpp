@@ -90,7 +90,9 @@ Value* NDouble::codeGen(CodeGenContext& context)
 Value* NBoolean::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating boolean: " << value << endl;
-	return ConstantInt::get(Type::getInt1Ty(getGlobalContext()), value, true); // Ik denk dat het Int1 moet zijn voor een 0 of 1
+	//return ConstantInt::get(Type::getInt1Ty(getGlobalContext()), value, true); // Ik denk dat het Int1 moet zijn voor een 0 of 1
+	return _value? ConstantInt::getTrue(getGlobalContext()) : ConstantInt::getFalse(getGlobalContext());
+	
 }
 
 Value* NIdentifier::codeGen(CodeGenContext& context)
