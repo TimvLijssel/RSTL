@@ -221,7 +221,7 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating if-statement" << endl;
-	Value *CondV = condition->codegen();
+	Value *CondV = condition->codeGen();
 	if (!CondV)
 		return nullptr;
 	
@@ -240,7 +240,7 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	// Emit then value.
 	Builder.SetInsertPoint(ThenBB);
 	
-	Value *ThenV = then->codegen();
+	Value *ThenV = then->codeGen();
 	if (!ThenV)
 		return nullptr;
 		
