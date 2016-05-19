@@ -83,7 +83,7 @@ func_decl_args : /*blank*/  { $$ = new VariableList(); }
 		  | func_decl_args TCOMMA var_decl { $1->push_back($<var_decl>3); }
 		  ;
 
-if_stmt : TIF TLPAREN expr TRPAREN block { $$ = new NIfStatement($3,*$5); }
+if_stmt : TIF TLPAREN expr TRPAREN block { $$ = new NIfStatement(*$3,*$5); }
 	;
 
 ident : TIDENTIFIER { $$ = new NIdentifier(*$1); delete $1; }
