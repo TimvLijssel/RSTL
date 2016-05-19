@@ -1,8 +1,12 @@
 #include "node.h"
 #include "codegen.h"
 #include "parser.hpp"
+#include "llvm/IR/IRBuilder.h"
 
+using namespace llvm;
 using namespace std;
+
+static IRBuilder<> Builder(getGlobalContext());
 
 /* Compile the AST into a module */
 void CodeGenContext::generateCode(NBlock& root)
@@ -226,7 +230,7 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
 	std::cout << "Creating if-statement" << endl;
-	const Value *CondV = condition.codeGen(context);
+	Value *CondV = condition.codeGen(context);
 	if (!CondV)
 		return nullptr;
 	
