@@ -235,13 +235,13 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 		return nullptr;
 	
 	// Convert condition to a bool by comparing equal to 0.0.
-	CondV = Builder.CreateFCmpONE(
-		CondV, ConstantFP::get(getGlobalContext(),APFloat(0.0)), "ifcond");
+	/*CondV = Builder.CreateFCmpONE(
+		CondV, ConstantFP::get(getGlobalContext(),APFloat(0.0)), "ifcond");*/
 	
-	Function *TheFunction = Builder.GetInsertBlock()->getParent();
+	/*Function *TheFunction = Builder.GetInsertBlock()->getParent();*/
 	
 	// Create block for the then block.
-	BasicBlock *ThenBB = BasicBlock::Create(getGlobalContext(), "then", TheFunction);
+	BasicBlock *ThenBB = BasicBlock::Create(getGlobalContext(), "then"/*, TheFunction*/);
 	BasicBlock *MergeBB = BasicBlock::Create(getGlobalContext(), "ifcont");
 	BasicBlock *EmptyBB = BasicBlock::Create(getGlobalContext());
 	
@@ -259,7 +259,7 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	ThenBB = Builder.GetInsertBlock();
 	
 	// Emit merge block.
-	TheFunction->getBasicBlockList().push_back(MergeBB);
+	/*TheFunction->getBasicBlockList().push_back(MergeBB);*/
 	Builder.SetInsertPoint(MergeBB);
 	PHINode *PN = Builder.CreatePHI(Type::getDoubleTy(getGlobalContext()), 2, "iftmp");
 	
