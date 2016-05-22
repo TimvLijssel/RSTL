@@ -41,7 +41,7 @@ GenericValue CodeGenContext::runCode() {
 	ee->finalizeObject();
 	vector<GenericValue> noargs;
 	GenericValue v = ee->runFunction(mainFunction, noargs);
-	std::cout << "Klaar mer draaien.\n";
+	std::cout << "Klaar met draaien.\n";
 	return v;
 }
 
@@ -121,7 +121,7 @@ Value* NMethodCall::codeGen(CodeGenContext& context)
 		args.push_back((**it).codeGen(context));
 	}
 	CallInst *call = CallInst::Create(function, makeArrayRef(args), "", context.currentBlock());
-	std::cout << "Functie call aanmaken: " << id.name << endl;
+	std::cout << "Functie aanroep aanmaken: " << id.name << endl;
 	return call;
 }
 
@@ -150,7 +150,7 @@ math:
 
 Value* NAssignment::codeGen(CodeGenContext& context)
 {
-	std::cout << "Toewijzing aanamken " << lhs.name << endl;
+	std::cout << "Toewijzing aanmaken " << lhs.name << endl;
 	if (context.locals().find(lhs.name) == context.locals().end()) {
 		std::cerr << "niet gedeclareerde variable: " << lhs.name << endl;
 		return NULL;
