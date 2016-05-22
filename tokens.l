@@ -14,7 +14,9 @@
 %%
 	/* Comments mogen niet op positie 1 staan, dus daarom staan ze wat naar rechts.. */
   /* Spaties en tabs negeren */
-[ \t\n]                   ;
+[ \t]                   ;
+  /* Herkennen van nieuwe regel */
+[\n;]			  return TOKEN(TENTER);
   /* Woorden herkenen */
 "teruggave"               return TOKEN(TRETURN);
 "als"                     return TOKEN(TIF);
