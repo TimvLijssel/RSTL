@@ -11,7 +11,7 @@ static IRBuilder<> Builder(getGlobalContext());
 /* Compile the AST into a module */
 void CodeGenContext::generateCode(NBlock& root)
 {
-	std::cout << "Generating code...\n";
+	std::cout << "Code genereren...\n";
 	
 	/* Create the top level interpreter function to call as entry */
 	vector<Type*> argTypes;
@@ -28,7 +28,7 @@ void CodeGenContext::generateCode(NBlock& root)
 	/* Print the bytecode in a human-readable format 
 	   to see if our program compiled properly
 	 */
-	std::cout << "Code is generated.\n";
+	std::cout << "Klaar met genereren!\n";
 	PassManager<Module> pm;
 	pm.addPass(PrintModulePass(outs()));
 	pm.run(*module);
@@ -36,12 +36,12 @@ void CodeGenContext::generateCode(NBlock& root)
 
 /* Executes the AST by running the main function */
 GenericValue CodeGenContext::runCode() {
-	std::cout << "Running code...\n";
+	std::cout << "Code aan het draaien...\n";
 	ExecutionEngine *ee = EngineBuilder( unique_ptr<Module>(module) ).create();
 	ee->finalizeObject();
 	vector<GenericValue> noargs;
 	GenericValue v = ee->runFunction(mainFunction, noargs);
-	std::cout << "Code was run.\n";
+	std::cout << "Klaar mer draaien.\n";
 	return v;
 }
 
@@ -74,7 +74,7 @@ static Type *typeOf(const NIdentifier& type)
 
 Value* NInteger::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating integer: " << value << endl;
+	std::cout << "Geheel getal aanmaken: " << value << endl;
 	return ConstantInt::get(Type::getInt64Ty(getGlobalContext()), value, true);
 }
 
@@ -87,13 +87,13 @@ Value* NInteger::codeGen(CodeGenContext& context)
 
 Value* NDouble::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating double: " << value << endl;
+	std::cout << "Rationeel getal aanmaken: " << value << endl;
 	return ConstantFP::get(Type::getDoubleTy(getGlobalContext()), value);
 }
 
 Value* NBoolean::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating boolean: " << value << endl;
+	std::cout << "Boolean aanmaken: " << value << endl;
 	//return ConstantInt::get(Type::getInt1Ty(getGlobalContext()), value, true); // Ik denk dat het Int1 moet zijn voor een 0 of 1
 	return value ? ConstantInt::getTrue(getGlobalContext()) : ConstantInt::getFalse(getGlobalContext());
 	
@@ -101,9 +101,9 @@ Value* NBoolean::codeGen(CodeGenContext& context)
 
 Value* NIdentifier::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating identifier reference: " << name << endl;
+	std::cout << "Identifier referentie aanmaken: " << name << endl;
 	if (context.locals().find(name) == context.locals().end()) {
-		std::cerr << "undeclared variable " << name << endl;
+		std::cerr << "niet gedeclareerde variable: " << name << endl;
 		return NULL;
 	}
 	return new LoadInst(context.locals()[name], "", false, context.currentBlock());
@@ -113,7 +113,7 @@ Value* NMethodCall::codeGen(CodeGenContext& context)
 {
 	Function *function = context.module->getFunction(id.name.c_str());
 	if (function == NULL) {
-		std::cerr << "no such function " << id.name << endl;
+		std::cerr << "functie niet gevonden: " << id.name << endl;
 	}
 	std::vector<Value*> args;
 	ExpressionList::const_iterator it;
@@ -121,13 +121,13 @@ Value* NMethodCall::codeGen(CodeGenContext& context)
 		args.push_back((**it).codeGen(context));
 	}
 	CallInst *call = CallInst::Create(function, makeArrayRef(args), "", context.currentBlock());
-	std::cout << "Creating method call: " << id.name << endl;
+	std::cout << "Functie call aanmaken: " << id.name << endl;
 	return call;
 }
 
 Value* NBinaryOperator::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating binary operation " << op << endl;
+	std::cout << "Binaire operatie aanmaken " << op << endl;
 	Instruction::BinaryOps instr;
 	switch (op) {
 		case TPLUS: 	instr = Instruction::Add; goto math;
@@ -150,9 +150,9 @@ math:
 
 Value* NAssignment::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating assignment for " << lhs.name << endl;
+	std::cout << "Toewijzing aanamken " << lhs.name << endl;
 	if (context.locals().find(lhs.name) == context.locals().end()) {
-		std::cerr << "undeclared variable " << lhs.name << endl;
+		std::cerr << "niet gedeclareerde variable: " << lhs.name << endl;
 		return NULL;
 	}
 	return new StoreInst(rhs.codeGen(context), context.locals()[lhs.name], false, context.currentBlock());
@@ -163,22 +163,22 @@ Value* NBlock::codeGen(CodeGenContext& context)
 	StatementList::const_iterator it;
 	Value *last = NULL;
 	for (it = statements.begin(); it != statements.end(); it++) {
-		std::cout << "Generating code for " << typeid(**it).name() << endl;
+		std::cout << "Code aanmaken voor " << typeid(**it).name() << endl;
 		last = (**it).codeGen(context);
 	}
-	std::cout << "Creating block" << endl;
+	std::cout << "Blok aanmaken" << endl;
 	return last;
 }
 
 Value* NExpressionStatement::codeGen(CodeGenContext& context)
 {
-	std::cout << "Generating code for " << typeid(expression).name() << endl;
+	std::cout << "Code aanmaken voor" << typeid(expression).name() << endl;
 	return expression.codeGen(context);
 }
 
 Value* NReturnStatement::codeGen(CodeGenContext& context)
 {
-	std::cout << "Generating return code for " << typeid(expression).name() << endl;
+	std::cout << "Terugvoer aanmaken voor " << typeid(expression).name() << endl;
 	Value *returnValue = expression.codeGen(context);
 	context.setCurrentReturnValue(returnValue);
 	return returnValue;
@@ -186,7 +186,7 @@ Value* NReturnStatement::codeGen(CodeGenContext& context)
 
 Value* NVariableDeclaration::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating variable declaration " << type.name << " " << id.name << endl;
+	std::cout << "Variable declaratie aanmaken " << type.name << " " << id.name << endl;
 	AllocaInst *alloc = new AllocaInst(typeOf(type), id.name.c_str(), context.currentBlock());
 	context.locals()[id.name] = alloc;
 	if (assignmentExpr != NULL) {
@@ -224,13 +224,13 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 	ReturnInst::Create(getGlobalContext(), context.getCurrentReturnValue(), bblock);
 
 	context.popBlock();
-	std::cout << "Creating function: " << id.name << endl;
+	std::cout << "Functie aanmaken: " << id.name << endl;
 	return function;
 }
 
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
-	std::cout << "Creating if-statement" << endl;
+	std::cout << "If-statement aanmaken (WERKT NIET!)" << endl;
 	Value *CondV = condition.codeGen(context);
 	if (!CondV)
 		return nullptr;
