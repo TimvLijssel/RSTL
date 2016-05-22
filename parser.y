@@ -2,13 +2,13 @@
 	#include "node.h"
         #include <cstdio>
         #include <cstdlib>
-	NBlock *programBlock; /* the top level root node of our final AST */
+	NBlock *programBlock; /* hoogte blok */
 
 	extern int yylex();
 	void yyerror(const char *s) { std::printf("Error: %s\n", s);std::exit(1); }
 %}
 
-/* Represents the many different ways we can access our data */
+/* basis nodes */
 %union {
 	Node *node;
 	NBlock *block;
@@ -22,9 +22,7 @@
 	int token;
 }
 
-/* Define our terminal symbols (tokens). This should
-   match our tokens.l lex file. We also define the node type
-   they represent.
+/* tokens definieren, deze matches met de tokens uit de lexer
  */
 %token <string> TIDENTIFIER TINTEGER TDOUBLE TBOOLWAAR TBOOLONWAAR /*TSTRING*/
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
@@ -33,10 +31,9 @@
 %token <token> TRETURN TIF
 %token <token> TAND TOR TXOR
 
-/* Define the type of node our nonterminal symbols represent.
-   The types refer to the %union declaration above. Ex: when
-   we call an ident (defined by union type ident) we are really
-   calling an (NIdentifier*). It makes the compiler happy.
+/* Tussenstappen voor de AST aanmaken. 
+ * Uiteindelijk wordt alles een token,
+ * maar het gaat vaak via een type.
  */
 %type <ident> ident
 %type <expr> numeric expr boolean /*string*/
@@ -46,7 +43,6 @@
 %type <stmt> stmt var_decl func_decl if_stmt
 %type <token> comparison
 
-/* Operator precedence for mathematical operators */
 %left TPLUS TMINUS
 %left TMUL TDIV
 
