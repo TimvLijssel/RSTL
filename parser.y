@@ -90,6 +90,7 @@ ident : TIDENTIFIER { $$ = new NIdentifier(*$1); delete $1; }
 	  ;
 
 numeric : TINTEGER { $$ = new NInteger(atol($1->c_str())); delete $1; }
+		| TMINUS TINTEGER { $$ = new NInteger(-atol($2->c_str())); delete $2; }
 		| TDOUBLE { $$ = new NDouble(atof($1->c_str())); delete $1; }
 		;
 
