@@ -27,7 +27,7 @@
  */
 %token <string> TIDENTIFIER TINTEGER TDOUBLE TBOOLWAAR TBOOLONWAAR /*TSTRING*/
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
-%token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE
+%token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT TQUOTE TENTER
 %token <token> TPLUS TMINUS TMUL TDIV
 %token <token> TRETURN TIF
 %token <token> TAND TOR TXOR
@@ -54,8 +54,11 @@
 program : stmts { programBlock = $1; }
 		;
 		
-stmts : stmt { $$ = new NBlock(); $$->statements.push_back($<stmt>1); }
-	  | stmts stmt { $1->statements.push_back($<stmt>2); }
+stmts : TENTER { $$ = new NBlock(); }
+	  | stmt { $$ = new NBlock(); $$->statements.push_back($<stmt>1); }
+	  | stmts TENTER stmt { $1->statements.push_back($<stmt>2); }
+	  | stmts TENTER
+	  | TENTER stmts { $$ = $2; }
 	  ;
 
 stmt : var_decl | func_decl | if_stmt
@@ -65,6 +68,7 @@ stmt : var_decl | func_decl | if_stmt
 
 block : TLBRACE stmts TRBRACE { $$ = $2; }
 	  | TLBRACE TRBRACE { $$ = new NBlock(); }
+	  | TENTER block { $$ = $2; }
 	  ;
 
 var_decl : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
