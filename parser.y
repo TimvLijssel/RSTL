@@ -8,7 +8,6 @@
 	extern int yylineno;
 	void yyerror(const char *s) { std::printf("Error rond lijn %d: %s\n",yylineno, s);std::exit(1); }
 %}
-%}
 
 /* basis nodes */
 %union {
