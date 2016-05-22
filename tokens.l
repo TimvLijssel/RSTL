@@ -25,7 +25,7 @@
 "exof"                    return TOKEN(TXOR);
   /* Alle andere woorden zijn identifiers */
 [a-zA-Z_][a-zA-Z0-9_]*    SAVE_TOKEN; return TIDENTIFIER;
-[0-9]+\,[0-9]*            SAVE_TOKEN; return TDOUBLE;
+[0-9]+\,[0-9]+            SAVE_TOKEN; return TDOUBLE;
 [0-9]+                    SAVE_TOKEN; return TINTEGER;
   /* String staat uit */
   /*"\""[^\"]*"\""        SAVE_TOKEN; return TSTRING;*/
