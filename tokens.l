@@ -9,6 +9,7 @@
 %}
 
 %option noyywrap
+%option yylineno
 
 %%
 	/* Comments mogen niet op positie 1 staan, dus daarom staan ze wat naar rechts.. */
