@@ -14,6 +14,7 @@ typedef std::vector<NStatement*> StatementList;
 typedef std::vector<NExpression*> ExpressionList;
 typedef std::vector<NVariableDeclaration*> VariableList;
 
+// Een node uit de AST (abstract syntax tree)
 class Node {
 public:
 	virtual ~Node() {}
