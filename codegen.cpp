@@ -132,8 +132,6 @@ Value* NBinaryOperator::codeGen(CodeGenContext& context)
 		case TAND: 	instr = Instruction::And; goto math;
 		case TOR: 	instr = Instruction::Or; goto math;
 		case TXOR: 	instr = Instruction::Xor; goto math;
-		
-		default: assert(0);
 	}
 
 	return NULL;
