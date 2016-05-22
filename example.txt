@@ -38,5 +38,6 @@ x = x+1
 
 uitvoer(x)
 
-
+uitvoer(2147483647) %- grootste getal ooit!
+uitvoer(2147483648) %- deze is namelijk kleiner
 
