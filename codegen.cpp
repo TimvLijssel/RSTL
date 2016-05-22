@@ -135,10 +135,11 @@ Value* NBinaryOperator::codeGen(CodeGenContext& context)
 		case TMUL: 		instr = Instruction::Mul; goto math;
 		case TDIV: 		instr = Instruction::SDiv; goto math;
 				
-		/* TODO comparison */
 		case TAND: 	instr = Instruction::And; goto math;
 		case TOR: 		instr = Instruction::Or; goto math;
 		case TXOR: 		instr = Instruction::Xor; goto math;
+		
+		default: assert(0)
 	}
 
 	return NULL;
