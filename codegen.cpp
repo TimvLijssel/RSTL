@@ -261,9 +261,10 @@ Value* NIfStatement::codeGen(CodeGenContext& context)
 	// Emit merge block.
 	/*TheFunction->getBasicBlockList().push_back(MergeBB);*/
 	Builder.SetInsertPoint(MergeBB);
-	PHINode *PN = Builder.CreatePHI(Type::getDoubleTy(getGlobalContext()), 2, "iftmp");
+	/*PHINode *PN = Builder.CreatePHI(Type::getDoubleTy(getGlobalContext()), 2, "iftmp");
 	
 	PN->addIncoming(ThenV, ThenBB);
-	return PN;
+	return PN;*/
+	return ThenV;
 }
 
