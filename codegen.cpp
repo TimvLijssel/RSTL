@@ -126,12 +126,12 @@ Value* NBinaryOperator::codeGen(CodeGenContext& context)
 	switch (op) {
 		case TPLUS: 	instr = Instruction::Add; goto math;
 		case TMINUS: 	instr = Instruction::Sub; goto math;
-		case TMUL: 		instr = Instruction::Mul; goto math;
-		case TDIV: 		instr = Instruction::SDiv; goto math;
+		case TMUL: 	instr = Instruction::Mul; goto math;
+		case TDIV: 	instr = Instruction::SDiv; goto math;
 				
 		case TAND: 	instr = Instruction::And; goto math;
-		case TOR: 		instr = Instruction::Or; goto math;
-		case TXOR: 		instr = Instruction::Xor; goto math;
+		case TOR: 	instr = Instruction::Or; goto math;
+		case TXOR: 	instr = Instruction::Xor; goto math;
 		
 		default: assert(0);
 	}
@@ -222,6 +222,7 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext& context)
 	return function;
 }
 
+// Deze werkt niet helemaal :(
 Value* NIfStatement::codeGen(CodeGenContext& context)
 {
 	std::cout << "If-statement aanmaken (WERKT NIET!)" << endl;
