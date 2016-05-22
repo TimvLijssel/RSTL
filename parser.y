@@ -5,7 +5,9 @@
 	NBlock *programBlock; /* aller hoogste blok */
 
 	extern int yylex();
-	void yyerror(const char *s) { std::printf("Error: %s\n", s);std::exit(1); }
+	extern int yylineno;
+	void yyerror(const char *s) { std::printf("Error rond lijn %d: %s\n",yylineno, s);std::exit(1); }
+%}
 %}
 
 /* basis nodes */
@@ -22,7 +24,7 @@
 	int token;
 }
 
-/* tokens definieren, deze matches met de tokens uit de lexer
+/* tokens definieren, deze kloppen met de tokens uit de lexer
  */
 %token <string> TIDENTIFIER TINTEGER TDOUBLE TBOOLWAAR TBOOLONWAAR /*TSTRING*/
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
