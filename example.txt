@@ -1,5 +1,5 @@
-%- Dit is commentaar!
 %- Welkom bij dit voorbeeldbestand
+%- Dit is commentaar!
 
 geh doe_wiskunde(geh a) {    %- Definieer een fucntie
   geh x = a * 5
@@ -17,9 +17,17 @@ uitvoer(boolean2)
 
 uitvoer(boolean en boolean2) %- Voer een logische operatie uit
 uitvoer(onwaar of waar)
+uitvoer(onwaar exof waar) %- exclusieve of
 
-als (boolean) { %- Een if loop
-  uitvoer(doe_wiskunde(200))
-}
+%- als (waar) { werkt niet :(
+%-  uitvoer(3)
+%- }
+
+geh x = -5
+geh y = 3
+
+uitvoer((x*y+y-y*17)/-3*2) %- Goede volgorde van uitvoeren operaties!
+
+uitvoer(x*-2)
 
 
