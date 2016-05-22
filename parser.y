@@ -2,7 +2,7 @@
 	#include "node.h"
         #include <cstdio>
         #include <cstdlib>
-	NBlock *programBlock; /* hoogte blok */
+	NBlock *programBlock; /* aller hoogste blok */
 
 	extern int yylex();
 	void yyerror(const char *s) { std::printf("Error: %s\n", s);std::exit(1); }
