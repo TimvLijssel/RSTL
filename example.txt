@@ -38,6 +38,5 @@ x = x+1
 
 uitvoer(x)
 
-uitvoer(2147483647) %- grootste getal ooit!
-uitvoer(2147483648) %- deze is namelijk kleiner
-
+uitvoer(2147483647) %- grootste getal ooit!       output = 2^31 - 1
+uitvoer(2147483648) %- deze is namelijk kleiner;  output = -(2^31)
