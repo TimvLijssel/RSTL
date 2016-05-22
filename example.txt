@@ -12,7 +12,7 @@ geh doe_wiskundebeter(geh a, geh b) {    %- Definieer een functie
   teruggave x + 3
 }
 
-geh waarofniet() {    %- Definieer een functie
+boo waarofniet() {    %- Definieer een functie
   teruggave waar
 }
 
