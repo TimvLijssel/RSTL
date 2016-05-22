@@ -1,13 +1,25 @@
 %- Welkom bij dit voorbeeldbestand
 %- Dit is commentaar!
 
-geh doe_wiskunde(geh a) {    %- Definieer een fucntie
+geh doe_wiskunde(geh a) {    %- Definieer een functie
   geh x = a * 5
   teruggave x + 3
 }
 
+geh doe_wiskundebeter(geh a, geh b) {    %- Definieer een functie
+  geh x = a * 5
+  x = x * b - a * b
+  teruggave x + 3
+}
+
+boo vergelijkmetvijf(geh zes){
+  teruggave zes = 5
+}
+
 uitvoer(doe_wiskunde(11))    %- Voer een getal uit
-uitvoer(doe_wiskunde(12))
+uitvoer(doe_wiskundebeter(12, 2))
+uitvoer(vergelijkmetvijf(3))
+uitvoer(vergelijkmetvijf(5))
 
 boo boolean = waar           %- Definieer een boolean
 uitvoer(boolean)
