@@ -139,7 +139,7 @@ Value* NBinaryOperator::codeGen(CodeGenContext& context)
 		case TOR: 		instr = Instruction::Or; goto math;
 		case TXOR: 		instr = Instruction::Xor; goto math;
 		
-		default: assert(0)
+		default: assert(0);
 	}
 
 	return NULL;
