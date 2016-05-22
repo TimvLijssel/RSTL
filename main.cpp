@@ -13,13 +13,16 @@ int main(int argc, char **argv)
 {
 	yyparse();
 	cout << programBlock << endl;
-    // see http://comments.gmane.org/gmane.comp.compilers.llvm.devel/33877
+    	// LLVM initaliseren
 	InitializeNativeTarget();
 	InitializeNativeTargetAsmPrinter();
 	InitializeNativeTargetAsmParser();
 	CodeGenContext context;
+	// print functie aanmaken
 	createCoreFunctions(context);
+	// code zelf aanmaken
 	context.generateCode(*programBlock);
+	// en draaien
 	context.runCode();
 	
 	return 0;
