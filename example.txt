@@ -19,7 +19,6 @@ geh waarofniet() {    %- Definieer een functie
 uitvoer(doe_wiskunde(11))    %- Voer een getal uit
 uitvoer(doe_wiskundebeter(12, 2))
 uitvoer(waarofniet())
-uitvoer(waarofniet())
 
 boo boolean = waar           %- Definieer een boolean
 uitvoer(boolean)
